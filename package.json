@@ -1,6 +1,6 @@
 {
   "name": "gcp-api-gateway-openapi-options",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Append options to open-api file",
   "main": "dist/index.js",
   "scripts": {
