@@ -33,3 +33,19 @@ paths:
       x-google-backend:
         address: >-
           https://theruntime.dev/v1/test/data
+  /v1/projects/{id}:
+    get:
+      description: "Test endpoint with id"
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: Numeric ID.
+      operationId: "projects"
+      x-google-backend:
+        address:  https://theruntime.dev/api/v1
+        path_translation: APPEND_PATH_TO_ADDRESS
+      responses:
+        '200':
+          description: OK

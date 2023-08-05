@@ -15,22 +15,29 @@ const addOptions = (yamlData) => {
   for (const path in yamlData.paths) {
     const endpoint = yamlData.paths[path];
     let xGoogleBackEnd = "";
+    let params = undefined;
 
     if (endpoint.get) {
       xGoogleBackEnd = endpoint.get["x-google-backend"].address;
+      params = endpoint.get.parameters;
     } else if (endpoint.post) {
       xGoogleBackEnd = endpoint.post["x-google-backend"].address;
+      params = endpoint.post.parameters;
     } else if (endpoint.put) {
       xGoogleBackEnd = endpoint.put["x-google-backend"].address;
+      params = endpoint.put.parameters;
     } else if (endpoint.patch) {
       xGoogleBackEnd = endpoint.patch["x-google-backend"].address;
+      params = endpoint.patch.parameters;
     } else if (endpoint.delete) {
       xGoogleBackEnd = endpoint.delete["x-google-backend"].address;
+      params = endpoint.delete.parameters;
     }
 
     if (!endpoint.options) {
       endpoint.options = {
         description: "Cors associated request to retried",
+        paramters: [...endpoint],
         operationId: generateHashId(xGoogleBackEnd),
         "x-google-backend": {
           address: xGoogleBackEnd,
