@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Create open-api file with options
         id: open-api-file-w-options
-        uses: rajikaimal/gcp-api-gateway-openapi-options@v0.0.1
+        uses: rajikaimal/gcp-api-gateway-openapi-options@master
         with:
           input-file-path: "./input.yml"
           output-file-path: "./output.yml"
