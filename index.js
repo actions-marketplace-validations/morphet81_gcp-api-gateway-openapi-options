@@ -2,7 +2,15 @@ const core = require("@actions/core");
 const fs = require("fs");
 const yaml = require("js-yaml");
 
-const addOptionsMethod = (yamlData) => {
+// generate hashId with xGoogleBackEnd and random number
+const generateHashId = (xGoogleBackEnd) => {
+  if (!xGoogleBackEnd) throw new Error("xGoogleBackEnd is empty");
+
+  const rand = Math.random();
+  return `${xGoogleBackEnd}-${rand}`;
+};
+
+const addOptions = (yamlData) => {
   console.log(yamlData);
   for (const path in yamlData.paths) {
     const endpoint = yamlData.paths[path];
@@ -23,7 +31,7 @@ const addOptionsMethod = (yamlData) => {
     if (!endpoint.options) {
       endpoint.options = {
         description: "Cors associated request to retried",
-        operationId: "governence cors",
+        operationId: generateHashId(xGoogleBackEnd),
         "x-google-backend": {
           address: xGoogleBackEnd,
         },
@@ -44,10 +52,11 @@ try {
   const yamlData = yaml.load(data);
 
   // Add the options method to the YAML data
-  addOptionsMethod(yamlData);
+  addOptions(yamlData);
   // Convert the YAML data back to a string
   const updatedYaml = yaml.dump(yamlData);
   // Save the updated YAML data back to the file
+  console.log(updatedYaml);
   fs.writeFileSync(outputFile, updatedYaml, "utf8");
   console.log("Options method added successfully!");
 } catch (err) {
