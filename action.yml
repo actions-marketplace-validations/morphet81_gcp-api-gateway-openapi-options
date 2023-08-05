@@ -1,0 +1,14 @@
+name: "Append OPTIONS to open-api"
+author: "rajikaimal"
+description: "Append OPTIONS method open api yml"
+inputs:
+  input-file-path:
+    description: "input open-api file"
+    required: true
+    default: "World"
+outputs:
+  output-file-path: # id of output
+    description: "output open-api file"
+runs:
+  using: "node16"
+  main: "dist/index.js"

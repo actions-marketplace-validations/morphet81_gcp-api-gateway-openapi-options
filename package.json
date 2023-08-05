@@ -2,7 +2,7 @@
   "name": "gcp-api-gateway-openapi-options",
   "version": "0.0.1",
   "description": "Append options to open-api file",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "ncc build index.js",
