@@ -6972,33 +6972,40 @@ const generateHashId = (xGoogleBackEnd) => {
 };
 
 const addOptions = (yamlData) => {
-  console.log(yamlData);
   for (const path in yamlData.paths) {
     const endpoint = yamlData.paths[path];
     let xGoogleBackEnd = "";
-    let params = undefined;
+    let parameters = undefined;
 
     if (endpoint.get) {
       xGoogleBackEnd = endpoint.get["x-google-backend"].address;
-      params = endpoint.get.parameters;
+      parameters = endpoint.get.parameters;
     } else if (endpoint.post) {
       xGoogleBackEnd = endpoint.post["x-google-backend"].address;
-      params = endpoint.post.parameters;
+      parameters = endpoint.post.parameters;
     } else if (endpoint.put) {
       xGoogleBackEnd = endpoint.put["x-google-backend"].address;
-      params = endpoint.put.parameters;
+      parameters = endpoint.put.parameters;
     } else if (endpoint.patch) {
       xGoogleBackEnd = endpoint.patch["x-google-backend"].address;
-      params = endpoint.patch.parameters;
+      parameters = endpoint.patch.parameters;
     } else if (endpoint.delete) {
       xGoogleBackEnd = endpoint.delete["x-google-backend"].address;
-      params = endpoint.delete.parameters;
+      parameters = endpoint.delete.parameters;
     }
 
     if (!endpoint.options) {
       endpoint.options = {
         description: "Cors associated request to retried",
-        paramters: [...endpoint],
+        parameters: parameters.map((param) => {
+          return {
+            in: param.in,
+            name: param.name,
+            type: param.type,
+            required: param.required,
+            description: param.description,
+          };
+        }),
         operationId: generateHashId(xGoogleBackEnd),
         "x-google-backend": {
           address: xGoogleBackEnd,
@@ -7024,8 +7031,8 @@ try {
   // Convert the YAML data back to a string
   const updatedYaml = yaml.dump(yamlData);
   // Save the updated YAML data back to the file
-  console.log(updatedYaml);
   fs.writeFileSync(outputFile, updatedYaml, "utf8");
+  console.log(yamlData);
   console.log("Options method added successfully!");
 } catch (err) {
   console.error("Error reading/parsing the YAML:", err);

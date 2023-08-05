@@ -49,3 +49,24 @@ paths:
       responses:
         '200':
           description: OK
+  /v1/projects/{id}/{age}:
+    get:
+      description: "Test endpoint with id and age"
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: Numeric ID.
+        - in: path
+          name: age
+          type: number
+          required: false
+          description: age
+      operationId: "projects"
+      x-google-backend:
+        address:  https://theruntime.dev/api/v1
+        path_translation: APPEND_PATH_TO_ADDRESS
+      responses:
+        '200':
+          description: OK
