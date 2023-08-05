@@ -1,9 +1,6 @@
 const core = require("@actions/core");
-const github = require("@actions/github");
 const fs = require("fs");
 const yaml = require("js-yaml");
-
-const filePath = "input.yaml";
 
 const addOptionsMethod = (yamlData) => {
   console.log(yamlData);
@@ -23,8 +20,6 @@ const addOptionsMethod = (yamlData) => {
       xGoogleBackEnd = endpoint.delete["x-google-backend"].address;
     }
 
-    console.log(">>>", xGoogleBackEnd);
-
     if (!endpoint.options) {
       endpoint.options = {
         description: "Cors associated request to retried",
@@ -42,7 +37,10 @@ const addOptionsMethod = (yamlData) => {
 };
 
 try {
-  const data = fs.readFileSync(filePath, "utf8");
+  const inputFile = core.getInput("input-file-path");
+  const outputFile = core.getInput("output-file-path");
+
+  const data = fs.readFileSync(inputFile, "utf8");
   const yamlData = yaml.load(data);
 
   // Add the options method to the YAML data
@@ -50,7 +48,7 @@ try {
   // Convert the YAML data back to a string
   const updatedYaml = yaml.dump(yamlData);
   // Save the updated YAML data back to the file
-  fs.writeFileSync("./output.yaml", updatedYaml, "utf8");
+  fs.writeFileSync(outputFile, updatedYaml, "utf8");
   console.log("Options method added successfully!");
 } catch (err) {
   console.error("Error reading/parsing the YAML:", err);
