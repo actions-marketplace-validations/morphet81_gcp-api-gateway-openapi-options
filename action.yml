@@ -5,7 +5,9 @@ inputs:
   input-file-path:
     description: "input open-api file"
     required: true
-    default: "World"
+  output-file-path:
+    description: "output open-api file"
+    required: true
 outputs:
   output-file-path: # id of output
     description: "output open-api file"
