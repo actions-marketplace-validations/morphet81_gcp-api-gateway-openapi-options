@@ -6,8 +6,6 @@
 
 **Required** input open-api yaml file path.
 
-## Outputs
-
 ### `output-file-path`
 
 **Required** output yaml file path.
