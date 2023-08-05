@@ -9,5 +9,5 @@ jobs:
         id: open-api-file-w-options
         uses: rajikaimal/gcp-api-gateway-openapi-options@master
         with:
-          input-file-path: .github/workflows/input.yml"
+          input-file-path: /home/runner/work/_actions/rajikaimal/gcp-api-gateway-openapi-options/master/.github/workflows/input.yml"
           output-file-path: ./ouput.yml
