@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+  create_open_api_file_with_options:
+    runs-on: ubuntu-latest
+    name: Create open-api file with options
+    steps:
+      - name: Create open-api file with options
+        id: open-api-file-w-options
+        uses: rajikaimal/gcp-api-gateway-openapi-options@v0.0.1
+        with:
+          input-file-path: "./input.yml"
+          output-file-path: "./output.yml"
