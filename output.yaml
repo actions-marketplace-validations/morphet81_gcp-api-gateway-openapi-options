@@ -1,0 +1,963 @@
+info:
+  contact: {}
+  description: API for getting CAD Trust data
+  title: CAD Trust
+  version: '1.0'
+paths:
+  /v1/governance/data:
+    get:
+      description: >-
+        Returns governance data that is notably used in drop-downs for filtering
+        projects search.
+      operationId: GovernanceController_getGovernanceData
+      parameters: []
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            properties:
+              governanceData:
+                properties:
+                  coBenefits:
+                    items:
+                      type: string
+                    type: array
+                  correspondingAdjustmentDeclaration:
+                    items:
+                      type: string
+                    type: array
+                  correspondingAdjustmentStatus:
+                    items:
+                      type: string
+                    type: array
+                  countries:
+                    items:
+                      type: string
+                    type: array
+                  coveredByNDC:
+                    items:
+                      type: string
+                    type: array
+                  labelType:
+                    items:
+                      type: string
+                    type: array
+                  methodology:
+                    items:
+                      type: string
+                    type: array
+                  projectSector:
+                    items:
+                      type: string
+                    type: array
+                  projectStatusValues:
+                    items:
+                      type: string
+                    type: array
+                  projectTags:
+                    items:
+                      type: string
+                    type: array
+                  projectType:
+                    items:
+                      type: string
+                    type: array
+                  ratingType:
+                    items:
+                      type: string
+                    type: array
+                  registries:
+                    items:
+                      type: string
+                    type: array
+                  unitMetric:
+                    items:
+                      type: string
+                    type: array
+                  unitStatus:
+                    items:
+                      type: string
+                    type: array
+                  unitTags:
+                    items:
+                      type: string
+                    type: array
+                  unitType:
+                    items:
+                      type: string
+                    type: array
+                  validationBody:
+                    items:
+                      type: string
+                    type: array
+                  verificationBody:
+                    items:
+                      type: string
+                    type: array
+                type: object
+              lastUpdated:
+                format: date-time
+                type: string
+            type: object
+        '403':
+          description: Unauthorized Request
+        '404':
+          description: Governance data not found
+      summary: Returns governance data.
+      tags:
+        - Governance
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/governance/data
+    options:
+      description: Cors associated request to retried
+      parameters: []
+      operationId: >-
+        https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/governance/data-0.4994688278466437
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/governance/data
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+  /v1/projects/filter:
+    post:
+      consumes:
+        - application/json
+      description: Return projects matching filters.
+      operationId: ProjectsController_searchProjectByFilters
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              countries:
+                items:
+                  example:
+                    - Argentina
+                    - Armenia
+                    - Australia
+                    - Austria
+                    - Azerbaijan
+                    - Bahamas
+                  type: string
+                type: array
+              creditingPeriodEnd:
+                example: '2024-02-17'
+                type: string
+              creditingPeriodStart:
+                example: '2020-02-17'
+                type: string
+              direction:
+                example: desc
+                type: string
+              methodologies:
+                items:
+                  example:
+                    - ACR - Advanced Refrigeration Systems
+                    - ACR - Certified Reclaimed HFC Refrigerants
+                    - ACR - Destruction of Ozone Depleting
+                    - ACR - Destruction of Ozone Depleting
+                    - ACR - Transition to Advanced Formulation
+                    - ACR - Afforestation and Reforestation
+                  type: string
+                type: array
+              sectors:
+                items:
+                  example:
+                    - Agriculture; forestry and fishing
+                    - Arts entertainment and recreation
+                    - Chemical Industries
+                    - Construction
+                    - Education
+                  type: string
+                type: array
+              sortBy:
+                example: name
+                type: string
+              standards:
+                items:
+                  example:
+                    - American Carbon Registry (ACR)
+                    - Article 6.4 Mechanism Registry
+                    - Carbon Assets Trading System (CATS)
+                  type: string
+                type: array
+            type: object
+      responses:
+        '201':
+          description: ''
+      summary: Search projects by filters
+      tags:
+        - Projects
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/projects/filter
+    options:
+      description: Cors associated request to retried
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              countries:
+                items:
+                  example:
+                    - Argentina
+                    - Armenia
+                    - Australia
+                    - Austria
+                    - Azerbaijan
+                    - Bahamas
+                  type: string
+                type: array
+              creditingPeriodEnd:
+                example: '2024-02-17'
+                type: string
+              creditingPeriodStart:
+                example: '2020-02-17'
+                type: string
+              direction:
+                example: desc
+                type: string
+              methodologies:
+                items:
+                  example:
+                    - ACR - Advanced Refrigeration Systems
+                    - ACR - Certified Reclaimed HFC Refrigerants
+                    - ACR - Destruction of Ozone Depleting
+                    - ACR - Destruction of Ozone Depleting
+                    - ACR - Transition to Advanced Formulation
+                    - ACR - Afforestation and Reforestation
+                  type: string
+                type: array
+              sectors:
+                items:
+                  example:
+                    - Agriculture; forestry and fishing
+                    - Arts entertainment and recreation
+                    - Chemical Industries
+                    - Construction
+                    - Education
+                  type: string
+                type: array
+              sortBy:
+                example: name
+                type: string
+              standards:
+                items:
+                  example:
+                    - American Carbon Registry (ACR)
+                    - Article 6.4 Mechanism Registry
+                    - Carbon Assets Trading System (CATS)
+                  type: string
+                type: array
+            type: object
+      operationId: >-
+        https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/projects/filter-0.3782018334632138
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/projects/filter
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+  /v1/projects/search:
+    get:
+      description: >-
+        Returns projects that match the given keywords. Returned projects are
+        sorted by relevance by default.
+      operationId: ProjectsController_searchByKeywords
+      parameters:
+        - in: query
+          name: pattern
+          required: true
+          type: string
+        - in: query
+          name: count
+          required: true
+          type: string
+        - in: query
+          name: offset
+          required: true
+          type: string
+        - enum:
+            - relevance
+            - name
+            - standard
+            - methodology
+            - sector
+            - country
+            - status
+            - crediting_period
+            - annual_estimation
+            - issued_units
+            - retired_units
+            - available_units
+            - adjustment
+          in: query
+          name: sortBy
+          required: false
+          type: string
+        - enum:
+            - asc
+            - desc
+          in: query
+          name: direction
+          required: false
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            items:
+              properties:
+                annualAvailable:
+                  example: 234
+                  type: number
+                annualEst:
+                  example: 123
+                  type: number
+                annualIssued:
+                  example: 123
+                  type: number
+                annualRetired:
+                  example: 23423
+                  type: number
+                country:
+                  example: ''
+                  type: string
+                creditingPeriodEnd:
+                  example: ''
+                  type: string
+                creditingPeriodStart:
+                  example: ''
+                  type: string
+                developer:
+                  example: ''
+                  type: string
+                id:
+                  example: S00098
+                  type: string
+                methodology:
+                  example: ''
+                  type: string
+                name:
+                  example: ''
+                  type: string
+                sector:
+                  example: ''
+                  type: string
+                standard:
+                  example: ''
+                  type: string
+                status:
+                  example: ''
+                  type: string
+                warehouseProjectId:
+                  example: 548b8b93-0a52-4714-8f0a-0b7091d4133b
+                  type: string
+              type: object
+            type: array
+        '403':
+          description: Unauthorized Request
+      summary: Search projects by keywords
+      tags:
+        - Projects
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/projects/search
+    options:
+      description: Cors associated request to retried
+      parameters:
+        - in: query
+          name: pattern
+          type: string
+          required: true
+        - in: query
+          name: count
+          type: string
+          required: true
+        - in: query
+          name: offset
+          type: string
+          required: true
+        - in: query
+          name: sortBy
+          type: string
+          required: false
+        - in: query
+          name: direction
+          type: string
+          required: false
+      operationId: >-
+        https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/projects/search-0.5614680725570127
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/projects/search
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+  /v1/projects/{wareHouseProjectId}:
+    get:
+      description: Returns project details to display on the project details page
+      operationId: ProjectsController_findOne
+      parameters:
+        - in: path
+          name: wareHouseProjectId
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            properties:
+              coBenefits:
+                items:
+                  example: SDG 8 - Decent work and economic growth
+                  type: string
+                type: array
+              coveredByNdc:
+                example: Outside NDC
+                type: string
+              creditingPeriodEnd:
+                example: '2020-03-17T00:00:00.000Z'
+                type: string
+              creditingPeriodStart:
+                example: '2020-02-17T00:00:00.000Z'
+                type: string
+              description:
+                example: Project Description
+                type: string
+              developer:
+                example: Developer
+                type: string
+              documents:
+                items:
+                  properties:
+                    name:
+                      example: Document Name
+                      type: string
+                    updatedDate:
+                      example: '2020-02-17T00:00:00.000Z'
+                      type: string
+                  type: object
+                type: array
+              id:
+                type: string
+              issuances:
+                items:
+                  properties:
+                    availableUnits:
+                      example: 100
+                      type: number
+                    date:
+                      example: '2020-02-17T00:00:00.000Z'
+                      type: string
+                    id:
+                      example: Issuance ID
+                      type: string
+                    quantity:
+                      example: 100
+                      type: number
+                    units:
+                      items:
+                        properties:
+                          date:
+                            example: '2020-02-17T00:00:00.000Z'
+                            type: string
+                          id:
+                            example: Unit ID
+                            type: string
+                          quantity:
+                            example: 100
+                            type: number
+                          status:
+                            example: Retired
+                            type: string
+                        type: object
+                      type: array
+                    vintage:
+                      example: 2010
+                      type: number
+                  type: object
+                type: array
+              link:
+                example: https://example.com
+                type: string
+              location:
+                properties:
+                  country:
+                    example: Country Name
+                    type: string
+                  geoCoordinates:
+                    example: >-
+                      {"latitude": 6.188514579773909, "longitude":
+                      -67.48209172867874}
+                    type: string
+                  region:
+                    example: Region Name
+                    type: string
+                type: object
+              methodology:
+                example: Methodology Name
+                type: string
+              name:
+                example: Project Name
+                type: string
+              sector:
+                example: Agriculture; forestry and fishing
+                type: string
+              standard:
+                example: EcoRegistry
+                type: string
+              tags:
+                example: Tag 1 || Tag 2
+                type: string
+              type:
+                example: Reforestation
+                type: string
+              units:
+                properties:
+                  available:
+                    example: 100
+                    type: number
+                  creditingPeriodEnd:
+                    example: '2020-03-17T00:00:00.000Z'
+                    type: string
+                  creditingPeriodStart:
+                    example: '2020-02-17T00:00:00.000Z'
+                    type: string
+                  estimated:
+                    example: 100
+                    type: number
+                  issued:
+                    example: 100
+                    type: number
+                  retired:
+                    example: 100
+                    type: number
+                  unitMetric:
+                    example: tCO2e
+                    type: string
+                type: object
+              validation:
+                properties:
+                  body:
+                    example: Validation Body
+                    type: string
+                  date:
+                    example: '2020-02-17T00:00:00.000Z'
+                    type: string
+                  verifications:
+                    items:
+                      properties:
+                        approach:
+                          example: Approach
+                          type: string
+                        endDate:
+                          example: '2020-03-17T00:00:00.000Z'
+                          type: string
+                        startDate:
+                          example: '2020-02-17T00:00:00.000Z'
+                          type: string
+                      type: object
+                    type: array
+                type: object
+              warehouseProjectId:
+                type: string
+            type: object
+        '403':
+          description: Unauthorized Request
+        '404':
+          description: Project not found
+      summary: Returns project details
+      tags:
+        - Projects
+      x-google-backend:
+        address: https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app
+    options:
+      description: Cors associated request to retried
+      parameters:
+        - in: path
+          name: wareHouseProjectId
+          type: string
+          required: true
+      operationId: >-
+        https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app-0.5091910870826672
+      x-google-backend:
+        address: https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+  /v1/units/{warehouseUnitId}:
+    get:
+      description: Returns unit details to display on the unit details page
+      operationId: UnitsController_findOne
+      parameters:
+        - in: path
+          name: warehouseUnitId
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            properties:
+              credits:
+                example: 388
+                type: number
+              issuanceDate:
+                example: '2022-10-13T00:00:00.000Z'
+                type: string
+              monitoringPeriodEnd:
+                example: '2021-12-31T00:00:00.000Z'
+                type: string
+              monitoringPeriodStart:
+                example: '2018-01-05T00:00:00.000Z'
+                type: string
+              project:
+                properties:
+                  id:
+                    example: projectId123124
+                    type: string
+                  name:
+                    example: Test Project Name
+                    type: string
+                  originProjectId:
+                    example: originProjectId123124
+                    type: string
+                  warehouseProjectId:
+                    example: warehouseProjectId123124
+                    type: string
+                type: object
+              retirementNote:
+                example: retired reason
+                type: string
+              status:
+                example: Retired
+                type: string
+              tags:
+                example: Tag1
+                type: string
+              type:
+                example: Reduction - nature
+                type: string
+              vintage:
+                example: 2019
+                type: number
+              warehouseUnitId:
+                example: unitId
+                type: string
+            type: object
+        '403':
+          description: Unauthorized Request
+        '404':
+          description: Unit not found
+      summary: Returns unit details
+      tags:
+        - Units
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/units/{warehouseUnitId}
+        path_translation: APPEND_PATH_TO_ADDRESS
+    options:
+      description: Cors associated request to retried
+      parameters:
+        - in: path
+          name: warehouseUnitId
+          type: string
+          required: true
+      operationId: >-
+        https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/units/{warehouseUnitId}-0.35906700326780694
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/units/{warehouseUnitId}
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+  /v1/widgets/issued-retired-graph:
+    get:
+      description: >-
+        Returns the dataset required to display the issued and retired amounts
+        graph.
+      operationId: WidgetsController_getIssuedRetiredGraphData
+      parameters: []
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            properties:
+              countriesData:
+                items:
+                  properties:
+                    countryCode:
+                      example: SGP
+                      type: string
+                    timeRanges:
+                      items:
+                        properties:
+                          issued:
+                            example: 23847
+                            type: number
+                          month:
+                            example: 6
+                            type: number
+                          retired:
+                            example: 982343
+                            type: number
+                          year:
+                            example: 2023
+                            type: number
+                        type: object
+                      type: array
+                  type: object
+                type: array
+              lastUpdated:
+                format: date-time
+                type: string
+            type: object
+        '403':
+          description: Unauthorized Request
+        '404':
+          description: Issued/retired graph data not found
+      summary: >-
+        Returns the analytics required to display issued and retired amounts
+        graph.
+      tags:
+        - Widgets
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/widgets/issued-retired-graph
+    options:
+      description: Cors associated request to retried
+      parameters: []
+      operationId: >-
+        https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/widgets/issued-retired-graph-0.5958521669820145
+      x-google-backend:
+        address: >-
+          https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/widgets/issued-retired-graph
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+  /v1/widgets/map:
+    get:
+      description: Returns the dataset required to display analytics on the map widget.
+      operationId: WidgetsController_getMapData
+      parameters: []
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema:
+            properties:
+              countriesData:
+                items:
+                  properties:
+                    countryCode:
+                      example: FRA
+                      type: string
+                    timeRanges:
+                      properties:
+                        max:
+                          properties:
+                            activeProjects:
+                              example: 372
+                              type: number
+                            estimatedReductions:
+                              example: 123982
+                              type: number
+                            sectors:
+                              items:
+                                properties:
+                                  average:
+                                    example: 12837434
+                                    type: number
+                                  name:
+                                    example: FRA
+                                    type: string
+                                type: object
+                              type: array
+                            standards:
+                              items:
+                                properties:
+                                  average:
+                                    example: 12837434
+                                    type: number
+                                  name:
+                                    example: FRA
+                                    type: string
+                                type: object
+                              type: array
+                            totalReductions:
+                              example: 817232
+                              type: number
+                            unitMetric:
+                              example: tCO2e
+                              type: string
+                          type: object
+                        oneMonth:
+                          properties:
+                            activeProjects:
+                              example: 372
+                              type: number
+                            estimatedReductions:
+                              example: 123982
+                              type: number
+                            sectors:
+                              items:
+                                properties:
+                                  average:
+                                    example: 12837434
+                                    type: number
+                                  name:
+                                    example: FRA
+                                    type: string
+                                type: object
+                              type: array
+                            standards:
+                              items:
+                                properties:
+                                  average:
+                                    example: 12837434
+                                    type: number
+                                  name:
+                                    example: FRA
+                                    type: string
+                                type: object
+                              type: array
+                            totalReductions:
+                              example: 817232
+                              type: number
+                            unitMetric:
+                              example: tCO2e
+                              type: string
+                          type: object
+                        sixMonths:
+                          properties:
+                            activeProjects:
+                              example: 372
+                              type: number
+                            estimatedReductions:
+                              example: 123982
+                              type: number
+                            sectors:
+                              items:
+                                properties:
+                                  average:
+                                    example: 12837434
+                                    type: number
+                                  name:
+                                    example: FRA
+                                    type: string
+                                type: object
+                              type: array
+                            standards:
+                              items:
+                                properties:
+                                  average:
+                                    example: 12837434
+                                    type: number
+                                  name:
+                                    example: FRA
+                                    type: string
+                                type: object
+                              type: array
+                            totalReductions:
+                              example: 817232
+                              type: number
+                            unitMetric:
+                              example: tCO2e
+                              type: string
+                          type: object
+                        twelveMonths:
+                          properties:
+                            activeProjects:
+                              example: 372
+                              type: number
+                            estimatedReductions:
+                              example: 123982
+                              type: number
+                            sectors:
+                              items:
+                                properties:
+                                  average:
+                                    example: 12837434
+                                    type: number
+                                  name:
+                                    example: FRA
+                                    type: string
+                                type: object
+                              type: array
+                            standards:
+                              items:
+                                properties:
+                                  average:
+                                    example: 12837434
+                                    type: number
+                                  name:
+                                    example: FRA
+                                    type: string
+                                type: object
+                              type: array
+                            totalReductions:
+                              example: 817232
+                              type: number
+                            unitMetric:
+                              example: tCO2e
+                              type: string
+                          type: object
+                      type: object
+                  type: object
+                type: array
+              lastUpdated:
+                format: date-time
+                type: string
+            type: object
+        '403':
+          description: Unauthorized Request
+        '404':
+          description: Map widget data not found
+      summary: Returns the analytics required to display information on the dashboard.
+      tags:
+        - Widgets
+      x-google-backend:
+        address: https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/widgets/map
+    options:
+      description: Cors associated request to retried
+      parameters: []
+      operationId: >-
+        https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/widgets/map-0.6516544100316497
+      x-google-backend:
+        address: https://cad-trust-dev-cloud-run-csgoriniva-as.a.run.app/v1/widgets/map
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+swagger: '2.0'
+tags: []

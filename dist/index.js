@@ -66,11 +66,8 @@ const addOptions = (yamlData) => {
 
 const main = () => {
     try {
-        // const inputFile = core.getInput("input-file-path", { required: true });
-        // const outputFile = core.getInput("output-file-path", { required: true });
-
-        const inputFile = "/Users/aobellianne/development/cadtrust/public-dashboard-backend/swagger.yaml";
-        const outputFile = "./output.yaml"
+        const inputFile = core.getInput("input-file-path", { required: true });
+        const outputFile = core.getInput("output-file-path", { required: true });
 
         const data = fs.readFileSync(inputFile, "utf8");
         const yamlData = yaml.load(data);
