@@ -1,5 +1,5 @@
 name: "Append OPTIONS to open-api"
-author: "rajikaimal"
+author: "morphet81"
 description: "Append OPTIONS method open api yml"
 inputs:
   input-file-path:
@@ -9,7 +9,7 @@ inputs:
     description: "output open-api file"
     required: true
 outputs:
-  output-file-path: # id of output
+  output-file-path:
     description: "output open-api file"
 runs:
   using: "node16"

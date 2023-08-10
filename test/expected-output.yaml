@@ -1,0 +1,95 @@
+info:
+  contact: {}
+  description: API for testing the action
+  title: Action API
+  version: '1.0'
+paths:
+  /v1/name:
+    get:
+      description: Returns a name
+      operationId: NameApi_Name
+      parameters:
+        - in: query
+          name: pattern
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: ''
+          schema: null
+          properties:
+            name:
+              example: A Name
+              type: string
+        '403':
+          description: Unauthorized Request
+        '404':
+          description: Data not found
+      summary: Returns governance data.
+      tags:
+        - Names
+      x-google-backend:
+        address: https://my-api-gateway.com/v1/governance/data
+    options:
+      description: Cors associated request to retried
+      parameters:
+        - in: query
+          name: pattern
+          type: string
+          required: true
+      operationId: my-generated-id
+      x-google-backend:
+        address: https://my-api-gateway.com/v1/governance/data
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+  /v1/name/create:
+    post:
+      consumes:
+        - application/json
+      description: Create a new name
+      operationId: NameApi_NameCreate
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              name:
+                example: Name
+                type: string
+            type: object
+      responses:
+        '201':
+          description: ''
+      summary: Create a new name
+      tags:
+        - Names
+      x-google-backend:
+        address: https://my-api-gateway.com/v1/name/create
+    options:
+      description: Cors associated request to retried
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            properties:
+              name:
+                example: Name
+                type: string
+            type: object
+      operationId: my-generated-id
+      x-google-backend:
+        address: https://my-api-gateway.com/v1/name/create
+      responses:
+        '200':
+          description: Allow
+        '401':
+          description: Cors not allowed
+swagger: '2.0'
+tags: []
